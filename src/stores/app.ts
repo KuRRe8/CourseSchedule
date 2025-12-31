@@ -9,6 +9,8 @@ interface MenuButtonBoundingClientRect {
   bottom: number
 }
 
+export type UserRole = 'student' | 'teacher' | 'principal'
+
 export const useAppStore = defineStore(
   'app',
   () => {
@@ -20,11 +22,29 @@ export const useAppStore = defineStore(
         ? 0
         : menuButtonBounding.value.bottom + menuButtonBounding.value.top - statusBarHeight.value)
 
+    // User authentication info
+    const userRole = ref<UserRole | null>(null)
+    const userIdentity = ref<string>('') // student name or teacher name
+
+    const setUserInfo = (role: UserRole, identity: string) => {
+      userRole.value = role
+      userIdentity.value = identity
+    }
+
+    const clearUserInfo = () => {
+      userRole.value = null
+      userIdentity.value = ''
+    }
+
     return {
       darkMode,
       statusBarHeight,
       customBarHeight,
       menuButtonBounding,
+      userRole,
+      userIdentity,
+      setUserInfo,
+      clearUserInfo,
     }
   })
 
@@ -32,3 +52,4 @@ export const useAppStore = defineStore(
 export function useAppStoreWidthOut() {
   return useAppStore(pinia)
 }
+

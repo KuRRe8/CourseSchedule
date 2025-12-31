@@ -8,7 +8,8 @@ const { setPageConfig } = usePageStore()
 
 const defaultCourse: CourseModel = {
   title: '',
-  location: '课程地点',
+  teacher: '教师A',
+  student: '学生1',
   week: 1,
   weeks: [1, 3, 5],
   start: 1,
@@ -184,9 +185,19 @@ function handleConfirmTimeActionSheet() {
           </div>
           <div class="flex px-4 justify-start items-center">
             <div class="min-w-14">
-              地点
+              教师
             </div>
-            <input v-model="courseItem.location" class="w-full" type="text" placeholder="输入上课地点（选填）">
+            <div class="w-full flex gap-2">
+              <div
+                v-for="teacher in ['教师A', '教师B', '教师C']"
+                :key="teacher"
+                class="px-3 py-1 rounded text-sm cursor-pointer transition-all"
+                :class="courseItem.teacher === teacher ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700'"
+                @click="courseItem.teacher = teacher"
+              >
+                {{ teacher }}
+              </div>
+            </div>
           </div>
           <div class="flex px-4 justify-start items-center">
             <div class="min-w-14">

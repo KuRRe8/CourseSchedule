@@ -57,7 +57,7 @@ function closeActionSheet() {
             </div>
             <div class="flex gap-1 justify-start items-center">
               <div class="i-carbon-location" />
-              {{ courseItem.location }}
+              {{ courseItem.teacher }}
             </div>
             <div class="flex gap-1 justify-start items-center">
               <div class="i-carbon-alarm" />

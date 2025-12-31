@@ -4,16 +4,34 @@ import CourseActionSheet from '~/components/timetable/CourseActionSheet.vue'
 import TimetableContent from '~/components/timetable/TimetableContent.vue'
 import courses from '~/static/courses'
 
-const { customBarHeight, statusBarHeight } = useAppStore()
+const appStore = useAppStore()
+const { customBarHeight, statusBarHeight } = appStore
 const { setPageConfig } = usePageStore()
-const { currentWeekIndex, isStart } = storeToRefs(useCourseStore())
-const { setCourseList, setStartDay } = useCourseStore()
+const courseStore = useCourseStore()
+const { currentWeekIndex, isStart } = storeToRefs(courseStore)
+const { setCourseList, setStartDay } = courseStore
 
 onShow(() => {
   setPageConfig({ showNavBar: false })
 })
 
-setCourseList(courses as CourseModel[])
+// Filter courses based on user role
+const filteredCourses = computed(() => {
+  let filteredList = courses as CourseModel[]
+  
+  if (appStore.userRole === 'student') {
+    // Student only sees their own courses
+    filteredList = filteredList.filter(course => course.student === appStore.userIdentity)
+  } else if (appStore.userRole === 'teacher') {
+    // Teacher only sees their courses
+    filteredList = filteredList.filter(course => course.teacher === appStore.userIdentity)
+  }
+  // Principal sees all courses (no filtering)
+  
+  return filteredList
+})
+
+setCourseList(filteredCourses.value)
 
 const showCourseAction = ref(false)
 

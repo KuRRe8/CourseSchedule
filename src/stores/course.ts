@@ -2,7 +2,8 @@ import { pinia } from '~/modules/pinia'
 
 export interface CourseModel {
   title: string
-  location: string
+  teacher: string
+  student: string
   start: number
   duration: number
   // [1-7]

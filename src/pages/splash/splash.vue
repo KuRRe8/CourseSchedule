@@ -7,7 +7,7 @@ onShow(() => {
 
 setTimeout(() => {
   uni.redirectTo({
-    url: '/pages/index/index',
+    url: '/pages/login/login',
   })
 }, 500)
 </script>
