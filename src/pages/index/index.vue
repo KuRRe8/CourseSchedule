@@ -57,6 +57,13 @@ function handleShowActionSheet(courseItem: CourseModel) {
 function handleCloseActionSheet() {
   showActionSheet.value = false
 }
+
+// 打开设置页面
+function handleOpenSettings() {
+  uni.navigateTo({
+    url: '/pages/settings/settings',
+  })
+}
 </script>
 
 <template>
@@ -88,6 +95,13 @@ function handleCloseActionSheet() {
       :show-action-sheet="showActionSheet" :course-item="clickedCourseItem"
       @cancel="handleCloseActionSheet"
     />
+    <!-- 浮动设置按钮 -->
+    <div
+      class="fixed bottom-6 right-6 z-100 w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg"
+      @click="handleOpenSettings"
+    >
+      <div class="text-2xl i-carbon-settings" />
+    </div>
   </UBasePage>
 </template>
 

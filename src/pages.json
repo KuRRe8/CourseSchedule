@@ -13,7 +13,8 @@
     { "path": "pages/splash/splash" },
     { "path": "pages/login/login" },
     { "path": "pages/index/index" },
-    { "path": "pages/detail/detail" }
+    { "path": "pages/detail/detail" },
+    { "path": "pages/settings/settings" }
   ],
   "easycom": {
     "autoscan": true,
