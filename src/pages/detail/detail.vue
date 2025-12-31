@@ -58,7 +58,7 @@ function handleAddNewTime() {
 function handleSaveCourse() {
   if (!courseTitle.value) {
     uni.showToast({
-      title: '请输入课程名称',
+      title: '请输入舞蹈课',
       icon: 'none',
     })
     return
